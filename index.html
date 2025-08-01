@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moeda Estudo</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            padding: 40px;
+            background-color: #f5f5f5;
+        }
+
+        #card-estudos {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        h2 {
+            margin: 10px;
+        }
+
+        #saldo {
+            margin: 10px;
+        }
+
+        #transation {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin: 10px;
+        }
+
+        .coins {
+            font-size: 20px;
+            padding: 5px;
+        }
+
+        .btn-caixa {
+            max-width: 130px;
+            font-size: 15px;
+        }
+
+        .log {
+            background-color: #eee;
+            margin: 10px;
+        }
+
+        .log > p {
+            margin: 10px;
+        }
+
+        #log {
+            margin: 10px;
+            list-style-position: inside;
+        }
+    </style>
+</head>
+<body>
+    <div id="card-estudos">
+        <h2>🎓 Moedas de Estudo</h2>
+        <p id="saldo"><strong>Saldo Atual:</strong> <span>0</span> moedas</p>
+
+        <div id="transation">
+            <label for="">Blocos estudados (25 minutos cada):</label>
+            <input class="coins" id="add-bloco" type="number" placeholder="0">
+            <button class="btn-caixa" id="add">+ Adicionar Estudo</button>
+
+            <label for="">Gasto (ex: vídeo games):</label>
+            <input class="coins" type="number" placeholder="0">
+            <button class="btn-caixa">- Gastar Moedas</button>
+        </div>
+
+        <div class="log">
+            <p>Historico:</p>
+            <ul id="log">
+
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("add").addEventListener("click", function() {
+            var input = document.getElementById("add-bloco");
+            var coin = input.value;
+            var ul = document.getElementById("log");
+            var li = document.createElement("li");
+
+            //Pensar na lógica de Fibonnaci
+
+            li.textContent = `+${coin} moedas por bloco(s) de estudo `;
+            ul.appendChild(li);
+        });
+    </script>
+</body>
+</html>
