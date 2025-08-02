@@ -66,16 +66,16 @@
 <body>
     <div id="card-estudos">
         <h2>🎓 Moedas de Estudo</h2>
-        <p id="saldo"><strong>Saldo Atual:</strong> <span>0</span> moedas</p>
+        <p ><strong>Saldo Atual:</strong> <span id="saldo">0</span>moedas</p>
 
         <div id="transation">
             <label for="">Blocos estudados (25 minutos cada):</label>
             <input class="coins" id="add-bloco" type="number" placeholder="0">
-            <button class="btn-caixa" id="add">+ Adicionar Estudo</button>
+            <button class="btn-caixa" id="add">+ Adicionar Bloco</button>
 
-            <label for="">Gasto (ex: vídeo games):</label>
-            <input class="coins" type="number" placeholder="0">
-            <button class="btn-caixa">- Gastar Moedas</button>
+            <label for="">Gasto (ex: 1 moeda = 30 minutos):</label>
+            <input class="coins" id="moedas-gastas" type="number" placeholder="0">
+            <button class="btn-caixa" id="remove">- Gastar Moedas</button>
         </div>
 
         <div class="log">
@@ -87,16 +87,53 @@
     </div>
 
     <script>
+
+        var saldo = 0;
+        const atualizarSaldo = document.getElementById("saldo");
+
         document.getElementById("add").addEventListener("click", function() {
+            var coin = 0;
             var input = document.getElementById("add-bloco");
-            var coin = input.value;
+            var bloco = parseInt(input.value);
+
             var ul = document.getElementById("log");
             var li = document.createElement("li");
 
-            //Pensar na lógica de Fibonnaci
+            console.log(typeof(bloco));
+
+            if (bloco == 1) {
+                coin = coin + 1;
+            } else if (bloco == 2) {
+                coin = coin + 2;
+            } else {
+                coin = coin + 6;
+            }
 
             li.textContent = `+${coin} moedas por bloco(s) de estudo `;
             ul.appendChild(li);
+
+            saldo += coin; 
+            atualizarSaldo.textContent = `${saldo}`
+        });
+
+        document.getElementById("remove").addEventListener("click", function() {
+            var input = document.getElementById("moedas-gastas");
+            var moedasGastas = parseInt(input.value);
+
+            var ul = document.getElementById("log");
+            var li = document.createElement("li");
+
+            if (moedasGastas > 0) {
+                saldo -= moedasGastas;
+            } else {
+                alert(`Valor inválido - ${moedasGastas}`)
+            }
+            
+
+            li.textContent = `-${moedasGastas} moedas gastas `;
+            ul.appendChild(li);
+
+            atualizarSaldo.textContent = `${saldo}`
         });
     </script>
 </body>
